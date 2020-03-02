@@ -57,7 +57,8 @@ public class SearchEngine {
             try {
                 BufferedReader bufferedReader = Files.newBufferedReader(path);
                 String wordRegex = "\\b" + phrase.toLowerCase() + "\\b";
-                boolean containsPhrase = bufferedReader.lines().map(word -> word.split(" ")).flatMap(Stream::of).anyMatch(line -> line.toLowerCase().matches(wordRegex));
+                boolean containsPhrase = bufferedReader.lines().map(line -> line.split(" ")).flatMap(Stream::of)
+					.anyMatch(line -> line.toLowerCase().matches(wordRegex));
                 if(containsPhrase) foundPhrases++;
             } catch (IOException e) {
                 System.out.println("Could not open the file " + e);
